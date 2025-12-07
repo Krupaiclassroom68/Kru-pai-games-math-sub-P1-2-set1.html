@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>SubtractMaster Kids (Yellow) · Kru Pai Classroom</title>
+
+<!-- สำคัญมากสำหรับมือถือ -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+        font-family: "Trebuchet MS", sans-serif;
+        background: #fff9e6;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+    h1 {
+        font-size: 36px;
+        margin-top: 20px;
+        color: #c49000;
+    }
+    h2 {
+        color: #555;
+        font-size: 22px;
+    }
+    .card {
+        max-width: 900px;
+        margin: 10px auto;
+        background: #ffffffcc;
+        border-radius: 18px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    .big-input {
+        font-size: 26px;
+        padding: 8px 15px;
+        border-radius: 10px;
+        border: 2px solid #ffd54f;
+        text-align: center;
+        width: 260px;
+    }
+    .main-btn {
+        background: linear-gradient(135deg,#ffecb3,#ffca28);
+        color: #fff;
+        border: none;
+        padding: 12px 30px;
+        font-size: 22px;
+        border-radius: 999px;
+        cursor: pointer;
+        margin-top: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    .main-btn:hover {
+        transform: translateY(-1px);
+    }
+    .menu-title {
+        margin-top: 10px;
+        color: #666;
+        font-size: 18px;
+    }
+    .set-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        margin: 6px 0;
+        flex-wrap: wrap;
+    }
+    .set-btn {
+        background: #ffd54f;
+        border: none;
+        padding: 10px 22px;
+        border-radius: 999px;
+        font-size: 18px;
+        cursor: pointer;
+        color: #fff;
+        min-width: 90px;
+    }
+    .set-btn:hover {
+        background: #ffb300;
+    }
+    .set-score {
+        font-size: 16px;
+        color: #666;
+        background: #f8f9fa;
+        padding: 6px 12px;
+        border-radius: 999px;
+        min-width: 120px;
+    }
+    .time-btn {
+        background: #fff3cd;
+        border: 2px solid #ffd54f;
+        padding: 8px 20px;
+        border-radius: 999px;
+        font-size: 16px;
+        cursor: pointer;
+        margin: 4px;
+    }
+    .time-btn.active {
+        background: #ffd54f;
+        color: #fff;
+    }
+    #timer {
+        font-size: 26px;
+        color: #c49000;
+        margin-top: 5px;
+    }
+    .question-box {
+        font-size: 32px;
+        margin: 10px 0;
+        padding: 6px;
+        color: #444;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    .answer-input {
+        width: 120px;
+        font-size: 28px;
+        padding: 4px;
+        text-align: center;
+        border-radius: 10px;
+        border: 2px solid #ffd54f;
+    }
+    .marker {
+        font-size: 30px;
+        padding-left: 6px;
+    }
+    .marker.ok {
+        color: #28a745;
+    }
+    .marker.no {
+        color: #dc3545;
+    }
+    .check-btn {
+        background: linear-gradient(135deg,#ffecb3,#ffc107);
+        border: none;
+        padding: 12px 32px;
+        border-radius: 999px;
+        font-size: 20px;
+        cursor: pointer;
+        margin-top: 15px;
+        color: #fff;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    .check-btn:hover {
+        transform: translateY(-1px);
+    }
+    #scoreBox {
+        margin-top: 15px;
+        padding: 15px;
+        border-radius: 16px;
+        background: #fff8e1;
+        border: 2px solid #ffecb3;
+        font-size: 24px;
+        color: #444;
+    }
+    #backBtn {
+        margin-top: 20px;
+        background: #777;
+        color: #fff;
+        padding: 10px 26px;
+        border: none;
+        border-radius: 999px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+    #playerNameShow {
+        font-size: 18px;
+        color: #777;
+        margin-top: 5px;
+    }
+
+    /* ===== ปรับสำหรับจอมือถือ ===== */
+    @media (max-width: 768px) {
+        body {
+            padding: 0;
+        }
+        .card {
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+            border-radius: 0;
+            min-height: 100vh;
+            padding: 16px 10px 20px 10px;
+        }
+        h1 {
+            font-size: 7vw;
+            margin-top: 12px;
+        }
+        h2 {
+            font-size: 5.2vw;
+        }
+        .menu-title,
+        .set-score,
+        #playerNameShow {
+            font-size: 4vw;
+        }
+        .big-input {
+            width: 80%;
+            font-size: 5.5vw;
+        }
+        .main-btn,
+        .check-btn,
+        .set-btn,
+        .time-btn,
+        #backBtn {
+            font-size: 4.5vw;
+            padding: 9px 18px;
+        }
+        .question-box {
+            font-size: 6.2vw;
+            line-height: 1.4;
+        }
+        .answer-input {
+            width: 26vw;
+            font-size: 6vw;
+            padding: 4px;
+        }
+        .marker {
+            font-size: 6.5vw;
+        }
+        #timer {
+            font-size: 5.5vw;
+        }
+        #scoreBox {
+            font-size: 5vw;
+        }
+    }
+</style>
+</head>
+<body>
+
+<h1>Kru Pai Classroom · SubtractMaster Kids (Yellow)</h1>
+
+<!-- หน้าลงชื่อ -->
+<div id="startScreen" class="card">
+    <h2>Enter your name before you start</h2>
+    <input id="playerName" class="big-input" placeholder="Enter your nickname...">
+    <br>
+    <button class="main-btn" onclick="startHome()">Start</button>
+</div>
+
+<!-- หน้าเลือกชุด + แสดงคะแนนแต่ละชุด -->
+<div id="home" class="card" style="display:none;">
+    <h2>Choose a subtraction practice set</h2>
+    <div id="playerNameShow"></div>
+    <p class="menu-title">10 sets · 10 questions in each set</p>
+
+    <h3>Single-digit − Single-digit (Sets 1–5)</h3>
+    <div class="set-row">
+        <button class="set-btn" onclick="startSet(1)">ชุด 1</button>
+        <span class="set-score" id="scoreSet1">Not played yet</span>
+    </div>
+    <div class="set-row">
+        <button class="set-btn" onclick="startSet(2)">ชุด 2</button>
+        <span class="set-score" id="scoreSet2">Not played yet</span>
+    </div>
+    <div class="set-row">
+        <button class="set-btn" onclick="startSet(3)">ชุด 3</button>
+        <span class="set-score" id="scoreSet3">Not played yet</span>
+    </div>
+    <div class="set-row">
+        <button class="set-btn" onclick="startSet(4)">ชุด 4</button>
+        <span class="set-score" id="scoreSet4">Not played yet</span>
+    </div>
+    <div class="set-row">
+        <button class="set-btn" onclick="startSet(5)">ชุด 5</button>
+        <span class="set-score" id="scoreSet5">Not played yet</span>
+    </div>
+
+    <h3>Two-digit − One-digit (no regrouping) (Sets 6–10)</h3>
+    <div class="set-row">
+        <button class="set-btn" onclick="startSet(6)">ชุด 6</button>
+        <span class="set-score" id="scoreSet6">Not played yet</span>
+    </div>
+    <div class="set-row">
+        <button class="set-btn" onclick="startSet(7)">ชุด 7</button>
+        <span class="set-score" id="scoreSet7">Not played yet</span>
+    </div>
+    <div class="set-row">
+        <button class="set-btn" onclick="startSet(8)">ชุด 8</button>
+        <span class="set-score" id="scoreSet8">Not played yet</span>
+    </div>
+    <div class="set-row">
+        <button class="set-btn" onclick="startSet(9)">ชุด 9</button>
+        <span class="set-score" id="scoreSet9">Not played yet</span>
+    </div>
+    <div class="set-row">
+        <button class="set-btn" onclick="startSet(10)">ชุด 10</button>
+        <span class="set-score" id="scoreSet10">Not played yet</span>
+    </div>
+
+    <h3>Timer mode</h3>
+    <button id="timeOnBtn"  class="time-btn"       onclick="setTimer(true)">Timed · 60 seconds</button>
+    <button id="timeOffBtn" class="time-btn active" onclick="setTimer(false)">No timer</button>
+</div>
+
+<!-- หน้าเกม -->
+<div id="game" class="card" style="display:none;">
+    <h2 id="setTitle"></h2>
+    <div id="timer"></div>
+    <div id="questionArea"></div>
+    <button class="check-btn" onclick="checkAnswers()">Check answers</button>
+    <div id="scoreBox" style="display:none;"></div>
+    <button id="backBtn" onclick="goHome()">Back to set menu</button>
+</div>
+
+<script>
+let isTimed = false;
+let timerCount = 60;
+let timerInterval;
+let currentSet = 1;
+let problems = [];
+let scores = Array(11).fill(null); // index 1-10
+let playerName = "";
+let alreadyChecked = false;
+
+// เสียงกดปุ่ม (beep สั้นๆ)
+let audioCtx = null;
+function playClick() {
+    try {
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        const o = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        o.connect(g);
+        g.connect(audioCtx.destination);
+        o.frequency.value = 650;
+        o.type = "sine";
+        const now = audioCtx.currentTime;
+        g.gain.setValueAtTime(0.08, now);
+        g.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+        o.start(now);
+        o.stop(now + 0.12);
+    } catch(e) {}
+}
+
+function startHome() {
+    playClick();
+    const nameInput = document.getElementById("playerName").value.trim();
+    playerName = nameInput || "นักเรียน";
+    document.getElementById("playerNameShow").innerText = "Player: " + playerName;
+    document.getElementById("startScreen").style.display = "none";
+    document.getElementById("home").style.display = "block";
+    updateScoreboard();
+}
+
+function setTimer(choice) {
+    playClick();
+    isTimed = choice;
+    const onBtn  = document.getElementById("timeOnBtn");
+    const offBtn = document.getElementById("timeOffBtn");
+    if (isTimed) {
+        onBtn.classList.add("active");
+        offBtn.classList.remove("active");
+    } else {
+        offBtn.classList.add("active");
+        onBtn.classList.remove("active");
+    }
+}
+
+function startSet(setNum) {
+    playClick();
+    currentSet = setNum;
+    alreadyChecked = false;
+    document.getElementById("scoreBox").style.display = "none";
+    document.getElementById("scoreBox").innerHTML = "";
+    generateQuestions();
+    document.getElementById("setTitle").innerText = "Set " + currentSet;
+    document.getElementById("home").style.display = "none";
+    document.getElementById("game").style.display = "block";
+
+    clearInterval(timerInterval);
+    if (isTimed) {
+        timerCount = 60;
+        document.getElementById("timer").innerHTML = "⏳ Time: " + timerCount + " sec";
+        timerInterval = setInterval(function() {
+            timerCount--;
+            document.getElementById("timer").innerHTML = "⏳ Time: " + timerCount + " sec";
+            if (timerCount <= 0) {
+                clearInterval(timerInterval);
+                if (!alreadyChecked) {
+                    checkAnswers();
+                }
+            }
+        }, 1000);
+    } else {
+        document.getElementById("timer").innerHTML = "";
+    }
+}
+
+function generateQuestions() {
+    problems = [];
+    const qArea = document.getElementById("questionArea");
+    qArea.innerHTML = "";
+
+    for (let i = 0; i < 10; i++) {
+        let a, b;
+
+        if (currentSet <= 5) {
+            // เลขตัวเดียว − ตัวเดียว (ไม่ติดลบ)
+            a = Math.floor(Math.random() * 9) + 1; // 1-9
+            b = Math.floor(Math.random() * a);     // 0..a-1 (เพื่อให้คำตอบ >0 You got บ่อย ๆ)
+        } else {
+            // เลขสองหลัก − หนึ่งหลัก (ไม่มีการยืม)
+            b = Math.floor(Math.random() * 9) + 1; // 1-9
+            const units = Math.floor(Math.random() * (10 - b)) + b; // b..9
+            const tens = Math.floor(Math.random() * 4) + 1; // 1-4 => 10..49
+            a = tens * 10 + units;
+        }
+
+        problems.push({a, b});
+
+        const div = document.createElement("div");
+        div.className = "question-box";
+        div.id = "qBox" + i;
+        div.innerHTML = `
+            <span>${a} − ${b} =</span>
+            <input class="answer-input" id="ans${i}" />
+            <span class="marker" id="mark${i}"></span>
+        `;
+        qArea.appendChild(div);
+    }
+}
+
+function checkAnswers() {
+    if (alreadyChecked) return;
+    alreadyChecked = true;
+    playClick();
+    clearInterval(timerInterval);
+
+    let score = 0;
+    for (let i = 0; i < problems.length; i++) {
+        const input = document.getElementById("ans"+i);
+        const mark  = document.getElementById("mark"+i);
+        const userAns = parseInt(input.value);
+        const correct = problems[i].a - problems[i].b;
+
+        if (!isNaN(userAns) && userAns === correct) {
+            score++;
+            mark.textContent = "✓";
+            mark.classList.remove("no");
+            mark.classList.add("ok");
+        } else {
+            mark.textContent = "✗";
+            mark.classList.remove("ok");
+            mark.classList.add("no");
+        }
+    }
+
+    scores[currentSet] = score;
+    updateScoreboard();
+
+    const box = document.getElementById("scoreBox");
+    box.style.display = "block";
+    let msg = "";
+    if (score === 10) {
+        msg = "Excellent! " + playerName + " Perfect score! 10/10 🎉 (SubtractMaster!)";
+    } else if (score >= 7) {
+        msg = "Great job! You got  " + score + "/10. Try again for mastery! 💖";
+    } else {
+        msg = "You got  " + score + "/10 ไม่เป็นไรนะ ลองใหม่You got เสมอ ✨";
+    }
+    box.innerHTML = msg;
+}
+
+function updateScoreboard() {
+    for (let s = 1; s <= 10; s++) {
+        const span = document.getElementById("scoreSet"+s);
+        if (!span) continue;
+        if (scores[s] === null) {
+            span.textContent = "Not played yet";
+        } else {
+            span.textContent = "Last: " + scores[s] + "/10";
+        }
+    }
+}
+
+function goHome() {
+    playClick();
+    clearInterval(timerInterval);
+    document.getElementById("game").style.display = "none";
+    document.getElementById("home").style.display = "block";
+}
+</script>
+
+</body>
+</html>
